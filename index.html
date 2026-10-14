@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4B292C">
+
+    <title>ChocoHub | A Little Piece of Happiness</title>
+
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --chocolate: #4B292C;
+            --brown: #704348;
+            --berry: #8E3557;
+            --pink: #F4C8D5;
+            --blush: #FFF3F5;
+            --cream: #FFF9F2;
+            --white: #FFFFFF;
+            --muted: #795e61;
+            --shadow: 0 12px 35px rgba(75, 41, 44, 0.09);
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            background: var(--cream);
+            color: var(--chocolate);
+            line-height: 1.7;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        .container {
+            width: 84%;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--berry);
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 42px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.2;
+            margin: 10px 0 14px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+        }
+
+        .accent {
+            color: var(--berry);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            border: 0;
+            border-radius: 30px;
+            background: var(--chocolate);
+            color: var(--white);
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--berry);
+            transform: translateY(-2px);
+        }
+
+        .btn-light {
+            background: var(--white);
+            color: var(--chocolate);
+        }
+
+        .btn-light:hover {
+            background: var(--pink);
+            color: var(--chocolate);
+        }
+
+        /* ===== PROMOTIONAL STRIP ===== */
+        .announcement {
+            background: var(--chocolate);
+            color: var(--pink);
+            padding: 9px 15px;
+            text-align: center;
+            font: 12px Arial, sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .announcement span {
+            color: white;
+            font-weight: bold;
+        }
+
+        /* ===== NAVIGATION ===== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 3px 15px rgba(75, 41, 44, 0.07);
+        }
+
+        .navbar {
+            min-height: 82px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: -1.5px;
+            white-space: nowrap;
+        }
+
+        .logo-heart {
+            color: var(--berry);
+            font-size: 25px;
+        }
+
+        .logo-hub {
+            color: var(--berry);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav a {
+            font: bold 14px Arial, sans-serif;
+            transition: color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--berry);
+        }
+
+        .nav-cta {
+            padding: 10px 18px;
+            background: var(--berry);
+            color: white;
+            border-radius: 25px;
+        }
+
+        .nav-cta:hover {
+            background: var(--chocolate);
+            color: white;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(115deg, #FFF3F5 0%, #F4C8D5 100%);
+            overflow: hidden;
+        }
+
+        .hero-layout {
+            min-height: 590px;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            gap: 55px;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .hero-copy {
+            max-width: 570px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 7px 14px;
+            border: 1px solid #E4B0C0;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--berry);
+            font: bold 11px Arial, sans-serif;
+            letter-spacing: 1.5px;
+            margin-bottom: 23px;
+        }
+
+        .hero h1 {
+            font-size: clamp(44px, 5.4vw, 72px);
+            line-height: 1.07;
+            letter-spacing: -2px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: var(--berry);
+            font-style: italic;
+        }
+
+        .hero-copy > p {
+            max-width: 490px;
+            color: #654448;
+            font: 16px/1.9 Arial, sans-serif;
+            margin-bottom: 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .text-link {
+            color: var(--chocolate);
+            font: bold 14px Arial, sans-serif;
+            border-bottom: 1px solid var(--berry);
+            padding-bottom: 4px;
+        }
+
+        .hero-note {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 35px;
+            color: var(--muted);
+            font: 12px Arial, sans-serif;
+        }
+
+        .hero-note strong {
+            color: var(--chocolate);
+        }
+
+        .hero-visual {
+            position: relative;
+            max-width: 510px;
+            justify-self: end;
+            width: 100%;
+        }
+
+        .hero-photo {
+            height: 440px;
+            border-radius: 48% 48% 18px 18px;
+            object-fit: cover;
+            box-shadow: 0 25px 55px rgba(75, 41, 44, 0.2);
+        }
+
+        .floating-card {
+            position: absolute;
+            left: -35px;
+            bottom: 35px;
+            width: 175px;
+            padding: 17px;
+            border-radius: 15px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .floating-card img {
+            height: 95px;
+            object-fit: cover;
+            border-radius: 9px;
+            margin-bottom: 9px;
+        }
+
+        .floating-card strong {
+            font-size: 14px;
+        }
+
+        .floating-card p {
+            color: var(--berry);
+            font: 12px Arial, sans-serif;
+        }
+
+        .round-stamp {
+            position: absolute;
+            right: -20px;
+            top: 28px;
+            width: 105px;
+            height: 105px;
+            border: 2px dashed white;
+            outline: 6px solid rgba(255, 255, 255, 0.45);
+            border-radius: 50%;
+            background: var(--berry);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.3;
+            transform: rotate(10deg);
+        }
+
+        /* ===== BENEFITS STRIP ===== */
+        .benefits {
+            background: var(--white);
+            border-bottom: 1px solid #F0E3E1;
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding-top: 25px;
+            padding-bottom: 25px;
+            gap: 20px;
+        }
+
+        .benefit {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .benefit-symbol {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--blush);
+            color: var(--berry);
+            font-size: 21px;
+        }
+
+        .benefit strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .benefit p {
+            color: var(--muted);
+            font: 12px Arial, sans-serif;
+        }
+
+        /* ===== CATEGORY SECTION ===== */
+        .categories {
+            padding: 85px 0;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .category-card {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+            border-radius: 16px;
+            background: var(--pink);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.07);
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 25px;
+            color: white;
+            background: linear-gradient(
+                transparent 15%,
+                rgba(42, 19, 23, 0.85)
+            );
+        }
+
+        .category-overlay h3 {
+            font-size: 25px;
+        }
+
+        .category-overlay p {
+            font: 13px Arial, sans-serif;
+            margin: 5px 0 14px;
+        }
+
+        .category-overlay a {
+            width: fit-content;
+            padding-bottom: 3px;
+            border-bottom: 1px solid white;
+            font: bold 13px Arial, sans-serif;
+        }
+
+        /* ===== FEATURED PRODUCTS ===== */
+        .featured {
+            padding: 80px 0;
+            background: #FFF1F3;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            overflow: hidden;
+            border-radius: 16px;
+            background: var(--white);
+            box-shadow: 0 7px 25px rgba(75, 41, 44, 0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+        }
+
+        .product-photo {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            background: var(--pink);
+        }
+
+        .product-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-photo img {
+            transform: scale(1.06);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            padding: 6px 12px;
+            background: var(--white);
+            color: var(--berry);
+            border-radius: 20px;
+            font: bold 10px Arial, sans-serif;
+            letter-spacing: 0.7px;
+        }
+
+        .product-details {
+            padding: 22px;
+        }
+
+        .product-details h3 {
+            font-size: 21px;
+            margin-bottom: 5px;
+        }
+
+        .product-details p {
+            color: var(--muted);
+            font: 13px/1.7 Arial, sans-serif;
+            min-height: 44px;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .price {
+            color: var(--berry);
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .add-btn {
+            border: 0;
+            border-radius: 22px;
+            padding: 10px 14px;
+            background: var(--chocolate);
+            color: white;
+            font: bold 12px Arial, sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover {
+            background: var(--berry);
+        }
+
+        .view-all {
+            text-align: center;
+            margin-top: 38px;
+        }
+
+        /* ===== BRAND STORY ===== */
+        .story {
+            padding: 90px 0;
+            background: var(--cream);
+        }
+
+        .story-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .story-images {
+            position: relative;
+            min-height: 430px;
+        }
+
+        .story-main-image {
+            width: 80%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 160px 160px 15px 15px;
+        }
+
+        .story-small-image {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 43%;
+            height: 190px;
+            object-fit: cover;
+            border: 8px solid var(--cream);
+            border-radius: 15px;
+        }
+
+        .story-copy h2 {
+            font-size: clamp(32px, 4vw, 45px);
+            line-height: 1.2;
+            margin: 12px 0 20px;
+        }
+
+        .story-copy p {
+            color: var(--muted);
+            font: 15px/1.9 Arial, sans-serif;
+            margin-bottom: 18px;
+        }
+
+        .story-signature {
+            margin-top: 24px;
+            color: var(--berry);
+            font-size: 22px;
+            font-style: italic;
+        }
+
+        /* ===== PROMOTION BANNER ===== */
+        .promo {
+            padding: 65px 0;
+            background: var(--chocolate);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .promo h2 {
+            font-size: clamp(30px, 4vw, 44px);
+            margin: 10px 0;
+        }
+
+        .promo p {
+            max-width: 590px;
+            margin: 0 auto 25px;
+            color: #F4DDE3;
+            font: 14px/1.8 Arial, sans-serif;
+        }
+
+        .promo .eyebrow {
+            color: var(--pink);
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            padding: 85px 0;
+            background: var(--white);
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .review-card {
+            padding: 27px;
+            border: 1px solid #F0DFE2;
+            border-radius: 15px;
+            background: var(--cream);
+        }
+
+        .stars {
+            color: var(--berry);
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .review-card blockquote {
+            color: #654448;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+
+        .reviewer {
+            font: bold 13px Arial, sans-serif;
+        }
+
+        .reviewer small {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-weight: normal;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            padding: 75px 0;
+            background: var(--pink);
+        }
+
+        .newsletter-inner {
+            max-width: 700px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: clamp(30px, 4vw, 42px);
+            margin: 10px 0;
+        }
+
+        .newsletter p {
+            color: #654448;
+            font: 14px/1.8 Arial, sans-serif;
+            margin-bottom: 25px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: auto;
+            padding: 6px;
+            border-radius: 35px;
+            background: var(--white);
+            gap: 8px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 0;
+            padding: 12px 16px;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--chocolate);
+        }
+
+        .newsletter-form button {
+            white-space: nowrap;
+        }
+
+        #newsletter-message {
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--berry);
+            font-size: 13px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 55px 0 20px;
+            background: var(--chocolate);
+            color: var(--pink);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 45px;
+            padding-bottom: 40px;
+        }
+
+        .footer-brand .logo {
+            display: inline-block;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            max-width: 310px;
+            color: #E6C7CE;
+            font: 13px/1.9 Arial, sans-serif;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 17px;
+            margin-bottom: 16px;
+        }
+
+        .footer-column a {
+            display: block;
+            width: fit-content;
+            margin-bottom: 10px;
+            color: #E6C7CE;
+            font: 13px Arial, sans-serif;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(255,255,255,0.16);
+            padding-top: 20px;
+            color: #E6C7CE;
+            font: 12px Arial, sans-serif;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 950px) {
+            .container {
+                width: 90%;
+            }
+
+            .hero-layout {
+                gap: 30px;
+            }
+
+            .hero-photo {
+                height: 370px;
+            }
+
+            .category-card {
+                height: 270px;
+            }
+
+            .product-photo {
+                height: 210px;
+            }
+
+            .product-details {
+                padding: 17px;
+            }
+
+            nav {
+                gap: 17px;
+            }
+
+            .story-layout {
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                justify-content: center;
+                padding: 15px 0;
+                gap: 12px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 17px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero-layout {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 55px;
+                padding-bottom: 60px;
+            }
+
+            .hero-copy {
+                margin: auto;
+            }
+
+            .hero-copy > p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions,
+            .hero-note {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                width: 85%;
+                max-width: 390px;
+                justify-self: center;
+                margin-top: 15px;
+            }
+
+            .hero-photo {
+                height: 350px;
+            }
+
+            .floating-card {
+                left: -20px;
+                width: 140px;
+            }
+
+            .round-stamp {
+                right: -10px;
+                width: 85px;
+                height: 85px;
+                font-size: 12px;
+            }
+
+            .benefit-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .benefit {
+                justify-content: flex-start;
+                max-width: 250px;
+                margin: auto;
+                width: 100%;
+            }
+
+            .category-grid,
+            .product-grid,
+            .review-grid {
+                grid-template-columns: 1fr;
+                max-width: 430px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .category-card {
+                height: 310px;
+            }
+
+            .product-photo {
+                height: 260px;
+            }
+
+            .story-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .story-images {
+                max-width: 470px;
+                width: 100%;
+                margin: auto;
+            }
+
+            .story-copy {
+                text-align: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .logo {
+                font-size: 27px;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero-photo {
+                height: 300px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                border-radius: 18px;
+                padding: 12px;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-brand {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="announcement">
+        A little sweetness goes a long way.
+        <span> Discover your ChocoHub favourites today!</span>
+    </div>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="container navbar">
+
+            <a href="index.html" class="logo">
+                <span class="logo-heart">♥</span>
+                Choco<span class="logo-hub">Hub</span>
+            </a>
+
+            <nav>
+                <a href="index.html" class="active">Home</a>
+                <a href="products.html">Products</a>
+                <a href="about.html">About Us</a>
+                <a href="#story">Our Story</a>
+                <a href="#newsletter" class="nav-cta">Join Us"</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+            <div class="container hero-layout">
+
+                <div class="hero-copy">
+                    <span class="hero-badge">
+                        YOUR HAPPY PLACE FOR CHOCOLATE
+                    </span>
+
+                    <h1>
+                        Life is sweeter
+                        with a little
+                        <span>chocolate.</span>
+                    </h1>
+
+                    <p>
+                        Welcome to ChocoHub, where cocoa meets creativity.
+                        Explore delicious chocolate treats, berry-inspired
+                        delights, and little moments of happiness made for you.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="products.html" class="btn">
+                            Explore Our Collection →
+                        </a>
+
+                        <a href="#story" class="text-link">
+                            Get to know us
+                        </a>
+                    </div>
+
+                    <div class="hero-note">
+                        <strong>CHOCOLATE</strong>
+                        <span>·</span>
+                        <strong>COMFORT</strong>
+                        <span>·</span>
+                        <strong>HAPPINESS</strong>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <img
+                        class="hero-photo"
+                        src="https://media.istockphoto.com/id/531725255/photo/chocolate-fountain-with-strawberry-schokoladenbrunnen.jpg?s=1024x1024&w=is&k=20&c=GUARN5Dm2iha8v538GQFCKx3oWbp-EE2lkVyMM_twKw="
+                        alt="Beautiful assortment of chocolate treats"
+                    >
+
+                    <div class="floating-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80"
+                            alt="Chocolate brownie treat"
+                        >
+                        <strong>Sweet little moments</strong>
+                        <p>Made for chocolate lovers.</p>
+                    </div>
+
+                    <div class="round-stamp">
+                        A LITTLE<br>COCOA<br>A LOT OF LOVE
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BENEFITS -->
+        <section class="benefits">
+            <div class="container benefit-grid">
+
+                <div class="benefit">
+                    <div class="benefit-symbol">♡</div>
+                    <div>
+                        <strong>Made with care</strong>
+                        <p>Thoughtful treats for sweet moments</p>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-symbol">✦</div>
+                    <div>
+                        <strong>Something for everyone</strong>
+                        <p>Explore different flavours and treats</p>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-symbol">❀</div>
+                    <div>
+                        <strong>Beautifully sweet</strong>
+                        <p>Little joys worth sharing</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SHOP BY CATEGORY -->
+        <section class="categories" id="categories">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">A WORLD OF SWEETNESS</span>
+                    <h2>Find Your Kind of <span class="accent">Happy</span></h2>
+                    <p>
+                        Whatever your craving, there is something sweet
+                        waiting for you.
+                    </p>
+                </div>
+
+                <div class="category-grid">
+
+                    <article class="category-card">
+                        <img
+                            src="https://s.widget-club.com/images/LqYGlO0igmUHYEy5DhBhuNK8Fo52/DBprzsSkPii1jOxL657a/BCF6094F-2100-4A4E-94F2-6528713A89BD.jpg?q=70"
+                            alt="Dark chocolate pieces"
+                            loading="lazy"
+                        >
+                        <div class="category-overlay">
+                            <h3>Chocolate Classics</h3>
+                            <p>Rich flavours for timeless cravings.</p>
+                            <a href="products.html">Explore Collection →</a>
+                        </div>
+                    </article>
+
+                    <article class="category-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1461009312844-e80697a81cc7?auto=format&fit=crop&w=800&q=85"
+                            alt="Berry-inspired dessert"
+                            loading="lazy"
+                        >
+                        <div class="category-overlay">
+                            <h3>Berry Bliss</h3>
+                            <p>Fruity sweetness with a playful twist.</p>
+                            <a href="products.html">Explore Collection →</a>
+                        </div>
+                    </article>
+
+                    <article class="category-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=85"
+                            alt="Freshly baked cookies"
+                            loading="lazy"
+                        >
+                        <div class="category-overlay">
+                            <h3>Cookies & Bites</h3>
+                            <p>Small treats, big happiness.</p>
+                            <a href="products.html">Explore Collection →</a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED PRODUCTS -->
+        <section class="featured" id="featured">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">HANDPICKED FOR YOU</span>
+                    <h2>Meet Your New <span class="accent">Favourites</span></h2>
+                    <p>
+                        A few sweet ideas to make your next chocolate
+                        moment extra special.
+                    </p>
+                </div>
+
+                <div class="product-grid">
+
+                    <article class="product-card">
+                        <div class="product-photo">
+                            <img
+                                src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=85"
+                                alt="Chocolate brownie dessert"
+                                loading="lazy"
+                            >
+                            <span class="product-tag">CHOCOLATE LOVE</span>
+                        </div>
+
+                        <div class="product-details">
+                            <h3>Classic Chocolate</h3>
+                            <p>
+                                Rich cocoa-inspired goodness for
+                                your everyday cravings.
+                            </p>
+                            <div class="product-bottom">
+                                <span class="price">₹199</span>
+                                <a href="products.html" class="add-btn">
+                                    Discover →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-photo">
+                            <img
+                                src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=85"
+                                alt="Strawberry dessert"
+                                loading="lazy"
+                            >
+                            <span class="product-tag">BERRY FAVOURITE</span>
+                        </div>
+
+                        <div class="product-details">
+                            <h3>Berry Bliss</h3>
+                            <p>
+                                A berry-inspired treat for a
+                                fresh and fruity mood.
+                            </p>
+                            <div class="product-bottom">
+                                <span class="price">₹249</span>
+                                <a href="products.html" class="add-btn">
+                                    Discover →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-photo">
+                            <img
+                                src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=85"
+                                alt="Chocolate chip cookies"
+                                loading="lazy"
+                            >
+                            <span class="product-tag">LITTLE TREATS</span>
+                        </div>
+
+                        <div class="product-details">
+                            <h3>Choco Bites</h3>
+                            <p>
+                                Bite-sized sweetness for your
+                                little breaks and big days.
+                            </p>
+                            <div class="product-bottom">
+                                <span class="price">₹149</span>
+                                <a href="products.html" class="add-btn">
+                                    Discover →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="view-all">
+                    <a href="products.html" class="btn">
+                        View All Products →
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BRAND STORY -->
+        <section class="story" id="story">
+            <div class="container story-layout">
+
+                <div class="story-images">
+                    <img
+                        class="story-main-image"
+                        src="https://images.unsplash.com/photo-1548907040-4d42e3f2c0c6?auto=format&fit=crop&w=900&q=85"
+                        alt="Chocolate pieces ready to enjoy"
+                        loading="lazy"
+                    >
+
+                    <img
+                        class="story-small-image"
+                        src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=500&q=80"
+                        alt="Assorted chocolate treats"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="story-copy">
+                    <span class="eyebrow">A LITTLE ABOUT US</span>
+
+                    <h2>
+                        More than chocolate.
+                        <span class="accent">It's a feeling.</span>
+                    </h2>
+
+                    <p>
+                        ChocoHub began with a simple idea: life's little
+                        moments deserve a little sweetness. We imagined a
+                        place where chocolate lovers could discover treats,
+                        explore flavours, and find their own kind of happy.
+                    </p>
+
+                    <p>
+                        Our world is inspired by rich chocolate browns,
+                        berry pinks, warm memories, and the joy of sharing
+                        something delicious with someone special.
+                    </p>
+
+                    <a href="about.html" class="btn">
+                        Discover Our Story →
+                    </a>
+
+                    <div class="story-signature">
+                        Sweetness, always. ♥
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROMOTIONAL BANNER -->
+        <section class="promo">
+            <div class="container">
+                <span class="eyebrow">YOUR NEXT SWEET DISCOVERY</span>
+
+                <h2>Make Today a Little Sweeter.</h2>
+
+                <p>
+                    Explore the ChocoHub collection and find something
+                    that matches your mood, your cravings, and your
+                    little moments of happiness.
+                </p>
+
+                <a href="products.html" class="btn btn-light">
+                    Find Your Favourite →
+                </a>
+            </div>
+        </section>
+
+        <!-- CUSTOMER REVIEWS -->
+        <section class="testimonials">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">SWEET WORDS</span>
+                    <h2>A Little Love From <span class="accent">Our Community</span></h2>
+                    <p>
+                        Chocolate is even sweeter when happiness is shared.
+                    </p>
+                </div>
+
+                <div class="review-grid">
+
+                    <article class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <blockquote>
+                            "There is something so comforting about
+                            chocolate. ChocoHub's aesthetic makes the
+                            whole experience feel special."
+                        </blockquote>
+                        <div class="reviewer">
+                            A Chocolate Lover
+                            <small>Sample testimonial</small>
+                        </div>
+                    </article>
+
+                    <article class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <blockquote>
+                            "The perfect kind of place for anyone who
+                            believes a little treat can make an ordinary
+                            day feel better."
+                        </blockquote>
+                        <div class="reviewer">
+                            A Sweet Tooth
+                            <small>Sample testimonial</small>
+                        </div>
+                    </article>
+
+                    <article class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <blockquote>
+                            "Chocolate, berry pinks, and the cutest
+                            little treats. Everything feels warm,
+                            thoughtful, and inviting."
+                        </blockquote>
+                        <div class="reviewer">
+                            A Berry Fan
+                            <small>Sample testimonial</small>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="newsletter" id="newsletter">
+            <div class="container newsletter-inner">
+
+                <span class="eyebrow">A SWEETER INBOX</span>
+
+                <h2>Join the <span class="accent">Sweet Club</span></h2>
+
+                <p>
+                    Be the first to hear about new treats, sweet ideas,
+                    and little ChocoHub updates.
+                </p>
+
+                <form class="newsletter-form" id="newsletter-form">
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email address"
+                        aria-label="Email address"
+                        required
+                    >
+
+                    <button type="submit" class="btn">
+                        Sign Me Up →
+                    </button>
+                </form>
+
+                <p id="newsletter-message" aria-live="polite"></p>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-heart">♥</span>
+                        Choco<span class="logo-hub">Hub</span>
+                    </a>
+
+                    <p>
+                        Your cozy corner for chocolate cravings,
+                        berry-inspired sweetness, and little moments
+                        worth celebrating.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="index.html">Home</a>
+                    <a href="products.html">Our Products</a>
+                    <a href="about.html">About Us</a>
+                    <a href="#story">Our Story</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Stay Connected</h3>
+                    <a href="#newsletter">Join Our Sweet Club</a>
+                    <a href="products.html">Discover Treats</a>
+                    <a href="about.html">Contact & Information</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 ChocoHub. All rights reserved.</p>
+                <p>Made for chocolate lovers, everywhere. ♥</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- NEWSLETTER DEMO -->
+    <script>
+        const newsletterForm =
+            document.getElementById("newsletter-form");
+
+        const newsletterMessage =
+            document.getElementById("newsletter-message");
+
+        newsletterForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            if (email !== "") {
+                newsletterMessage.textContent =
+                    "Thank you for your interest in ChocoHub!";
+
+                newsletterForm.reset();
+            }
+        });
+    </script>
+
+</body>
+</html>

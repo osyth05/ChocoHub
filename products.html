@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Products | ChocoHub</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --chocolate: #4B292C;
+            --brown: #704348;
+            --berry: #8E3557;
+            --pink: #F4C8D5;
+            --blush: #FFF3F5;
+            --cream: #FFF9F2;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            background: var(--cream);
+            color: var(--chocolate);
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        header {
+            background: var(--white);
+            padding: 16px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 15px rgba(75, 41, 44, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--chocolate);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--berry);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--chocolate);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--berry);
+        }
+
+        .cart-count {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--berry);
+            color: white;
+            border-radius: 50%;
+            width: 23px;
+            height: 23px;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+
+        /* PAGE BANNER */
+        .page-banner {
+            text-align: center;
+            padding: 70px 8%;
+            background: linear-gradient(
+                120deg,
+                var(--blush),
+                var(--pink)
+            );
+        }
+
+        .page-banner .eyebrow {
+            color: var(--berry);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .page-banner h1 {
+            font-size: clamp(38px, 5vw, 55px);
+            margin: 10px 0;
+        }
+
+        .page-banner h1 span {
+            color: var(--berry);
+        }
+
+        .page-banner p {
+            color: #654448;
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* PRODUCTS SECTION */
+        .products-section {
+            padding: 55px 8% 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+        }
+
+        .section-title p {
+            color: var(--brown);
+            font-family: Arial, sans-serif;
+        }
+
+        /* FILTER BUTTONS */
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 1px solid #D9A1B3;
+            border-radius: 25px;
+            background: var(--white);
+            color: var(--chocolate);
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--berry);
+            color: var(--white);
+            border-color: var(--berry);
+        }
+
+        /* PRODUCT GRID */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 6px 22px rgba(75, 41, 44, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .product-image {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            background: var(--pink);
+        }
+
+        .product-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.06);
+        }
+
+        .product-label {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: var(--berry);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font: bold 11px Arial, sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .product-info {
+            padding: 22px;
+        }
+
+        .product-info h3 {
+            font-size: 21px;
+            margin-bottom: 6px;
+        }
+
+        .description {
+            color: #765A5D;
+            font: 14px/1.6 Arial, sans-serif;
+            min-height: 45px;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .price {
+            font-size: 21px;
+            font-weight: bold;
+            color: var(--berry);
+        }
+
+        .add-btn {
+            background: var(--chocolate);
+            color: var(--white);
+            border: none;
+            border-radius: 22px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover {
+            background: var(--berry);
+        }
+
+        .product-card[hidden] {
+            display: none;
+        }
+
+        /* CART MESSAGE */
+        .cart-message {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--berry);
+            font-weight: bold;
+            min-height: 26px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--chocolate);
+            color: var(--pink);
+            text-align: center;
+            padding: 28px 8%;
+        }
+
+        .footer-logo {
+            color: var(--white);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            header {
+                padding: 16px 5%;
+            }
+
+            nav {
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .page-banner {
+                padding: 50px 6%;
+            }
+
+            .products-section {
+                padding: 40px 6% 60px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+                margin: auto;
+            }
+
+            .product-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header>
+        <a href="index.html" class="logo">
+            <span>♥</span> Choco<span>Hub</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html" class="active">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="#products">
+                Cart <span class="cart-count" id="cart-count">0</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- PAGE BANNER -->
+    <section class="page-banner">
+        <span class="eyebrow">A WORLD OF COCOA & SWEETNESS</span>
+        <h1>Our Sweet <span>Collection</span></h1>
+        <p>
+            Discover your next favourite treat, from rich chocolate
+            classics to delicious berry-inspired creations.
+        </p>
+    </section>
+
+    <!-- PRODUCTS -->
+    <main>
+        <section class="products-section" id="products">
+
+            <div class="section-title">
+                <h2>Find Your <span style="color:#8E3557;">Favourite</span></h2>
+                <p>Made for your little moments of happiness.</p>
+            </div>
+
+            <!-- CATEGORY FILTERS -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">
+                    All Products
+                </button>
+                <button class="filter-btn" data-filter="chocolate">
+                    Chocolate
+                </button>
+                <button class="filter-btn" data-filter="berry">
+                    Berry Specials
+                </button>
+                <button class="filter-btn" data-filter="cookies">
+                    Cookies & Bites
+                </button>
+            </div>
+
+            <div class="product-grid">
+
+                <!-- PRODUCT 1 -->
+                <article class="product-card" data-category="chocolate">
+                    <div class="product-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=85"
+                            alt="Chocolate brownies"
+                            loading="lazy"
+                        >
+                        <span class="product-label">BESTSELLER</span>
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Classic Chocolate</h3>
+                        <p class="description">
+                            Deep cocoa flavour for classic chocolate lovers.
+                        </p>
+                        <div class="product-bottom">
+                            <span class="price">₹199</span>
+                            <button class="add-btn" data-name="Classic Chocolate">
+                                Add to Cart +
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PRODUCT 2 -->
+                <article class="product-card" data-category="berry">
+                    <div class="product-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1461009312844-e80697a81cc7?auto=format&fit=crop&w=700&q=85"
+                            alt="Berry dessert"
+                            loading="lazy"
+                        >
+                        <span class="product-label">BERRY FAVOURITE</span>
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Berry Bliss</h3>
+                        <p class="description">
+                            A berry-inspired sweet treat with a lovely twist.
+                        </p>
+                        <div class="product-bottom">
+                            <span class="price">₹249</span>
+                            <button class="add-btn" data-name="Berry Bliss">
+                                Add to Cart +
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PRODUCT 3 -->
+                <article class="product-card" data-category="cookies">
+                    <div class="product-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=85"
+                            alt="Freshly baked cookies"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Choco Bites</h3>
+                        <p class="description">
+                            Small, delightful bites for everyday cravings.
+                        </p>
+                        <div class="product-bottom">
+                            <span class="price">₹149</span>
+                            <button class="add-btn" data-name="Choco Bites">
+                                Add to Cart +
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PRODUCT 4 -->
+                <article class="product-card" data-category="chocolate">
+                    <div class="product-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=700&q=85"
+                            alt="Assorted chocolate treats"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Chocolate Delights</h3>
+                        <p class="description">
+                            An assortment of chocolate-inspired treats.
+                        </p>
+                        <div class="product-bottom">
+                            <span class="price">₹299</span>
+                            <button class="add-btn" data-name="Chocolate Delights">
+                                Add to Cart +
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PRODUCT 5 -->
+                <article class="product-card" data-category="berry">
+                    <div class="product-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=85"
+                            alt="Strawberry dessert"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Strawberry Sweet</h3>
+                        <p class="description">
+                            A fruity dessert idea for berry lovers.
+                        </p>
+                        <div class="product-bottom">
+                            <span class="price">₹229</span>
+                            <button class="add-btn" data-name="Strawberry Sweet">
+                                Add to Cart +
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PRODUCT 6 -->
+                <article class="product-card" data-category="cookies">
+                    <div class="product-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=85"
+                            alt="Chocolate chip cookies"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Cookie Cravings</h3>
+                        <p class="description">
+                            Cookie treats for your tea-time and snack breaks.
+                        </p>
+                        <div class="product-bottom">
+                            <span class="price">₹179</span>
+                            <button class="add-btn" data-name="Cookie Cravings">
+                                Add to Cart +
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <p class="cart-message" id="cart-message" aria-live="polite"></p>
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">ChocoHub ♥</div>
+        <p>Made for chocolate lovers, everywhere.</p>
+        <p>&copy; 2026 ChocoHub. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // FILTER PRODUCTS
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const products = document.querySelectorAll(".product-card");
+
+        filterButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                const category = button.dataset.filter;
+
+                filterButtons.forEach(function(btn) {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                products.forEach(function(product) {
+                    if (
+                        category === "all" ||
+                        product.dataset.category === category
+                    ) {
+                        product.hidden = false;
+                    } else {
+                        product.hidden = true;
+                    }
+                });
+            });
+        });
+
+        // DEMO CART COUNTER
+        let cartCount = 0;
+
+        const countDisplay = document.getElementById("cart-count");
+        const cartMessage = document.getElementById("cart-message");
+        const addButtons = document.querySelectorAll(".add-btn");
+
+        addButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                cartCount++;
+
+                countDisplay.textContent = cartCount;
+
+                cartMessage.textContent =
+                    button.dataset.name + " added to your demo cart!";
+
+                button.textContent = "Added ✓";
+
+                setTimeout(function() {
+                    button.textContent = "Add to Cart +";
+                }, 1000);
+            });
+        });
+    </script>
+
+</body>
+</html>
